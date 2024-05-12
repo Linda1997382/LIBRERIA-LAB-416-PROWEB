@@ -1,0 +1,20 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+    background-color: navy;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: white;
+}
+
+#login-link { /*aun no se esta usando listo para colocar la imagen*/
+    background-image: url('ruta/a/imagen/iniciar_sesion.png');
+    background-size: 20px 20px; /* Ajusta el tamaño de la imagen según sea necesario */
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 30px; /* Espacio para la imagen */   
+}
