@@ -11,10 +11,19 @@ body {
     color: white;
 }
 
-#login-link { /*aun no se esta usando listo para colocar la imagen*/
-    background-image: url('ruta/a/imagen/iniciar_sesion.png');
-    background-size: 20px 20px; /* Ajusta el tamaño de la imagen según sea necesario */
-    background-repeat: no-repeat;
-    background-position: center left;
-    padding-left: 30px; /* Espacio para la imagen */   
+
+.navbar-nav .nav-link .fas.fa-shopping-cart {
+    color: white; /* Cambia el color a blanco */
+    font-size: 15px; /* Cambia el tamaño del icono */
+    margin-right: 1px;
+    margin-left: 1px;
 }
+
+#login-link .fas.fa-sign-in-alt,
+.navbar-nav .nav-link .fas.fa-shopping-cart {
+    font-size: 15px; /* Ajusta el tamaño del icono según sea necesario */
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+
