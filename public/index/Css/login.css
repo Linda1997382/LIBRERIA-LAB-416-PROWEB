@@ -1,0 +1,35 @@
+body, html {
+    height: 100%;
+}
+
+.bg-logo {
+    background-color: navy;
+}
+
+.bg-form {
+    background-color: #fff;
+}
+
+.login-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginForm {
+    width: 80%;
+    max-width: 400px;
+}
+
+.container-fluid {
+    height: 100vh;
+}
+
+#CUENTA1{
+    color:#fff;
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
