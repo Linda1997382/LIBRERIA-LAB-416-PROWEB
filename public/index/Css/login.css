@@ -33,3 +33,32 @@ body, html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+#icono-inicio {
+    position: fixed;
+    top: 20px; /* Ajusta este valor según sea necesario */
+    left: 20px; /* Ajusta este valor según sea necesario */
+    z-index: 9999; /* Asegura que esté en la capa superior */
+    color: #f7f7f7; /* Cambia el color del icono según tu diseño */
+    font-size: 24px; /* Ajusta el tamaño del icono según sea necesario */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+}
+
+.nav-item:not(:last-child):after {
+    content: ""; 
+    position: absolute; 
+    top: 50%; 
+    right: 0; 
+    transform: translateY(-50%); 
+    height: calc(100% - 20px); 
+    border-right: 2px solid black; 
+}
+
+.nav-link {
+    padding: 10px 20px; 
+    transition: transform 0.3s ease; 
+}
+
+.nav-link:hover {
+    transform: translateY(-5px); 
+}
+

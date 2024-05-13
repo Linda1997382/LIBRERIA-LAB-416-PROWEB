@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Librería Azul</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <!--ccs personalizado-->
+  <link rel="stylesheet" href="Css/sobrenosotros.css">
+</head>
+<body>
+
+  <header>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="index.html">
+          <img  id="IMG1" src="https://i.imgur.com/7w4wg5l.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Soporte<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Sobre nosotros</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a id="login-link" class="nav-link" href="login.html">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </a>
+                </li>
+            </ul>                
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+  <div class="row align-items-center">
+      <!-- Mitad 1 -->
+      <div class="col-md-6">
+          <div class="navy-bg text-center mb-4">
+              <h2>Sobre nosotros</h2>
+          </div>
+          <p>Bienvenido a la librería azul, tu destino literario en la web. Nos enorgullece ser un rincón virtual donde la magia de las palabras cobra vida y los amantes de la lectura encuentran un hogar. En la librería azul, nos apasiona conectar a los lectores con historias cautivadoras, conocimientos transformadores y mundos infinitos de imaginación. Nuestra misión es brindarte una experiencia única de exploración literaria, donde cada clic te lleve a descubrir algo nuevo y emocionante.</p>
+          
+          <!-- Semáforo -->
+          <div class="semaforo">
+              <h4>¿Qué te parece nuestra página?</h4>
+              <span id="btn-bueno" class="btn btn-success">&#x1F603;</span>
+              <span id="btn-neutral" class="btn btn-warning">&#x1F610;</span>
+              <span id="btn-malo" class="btn btn-danger">&#x1F615;</span>
+          </div>
+      </div>
+      
+      <!-- Mitad 2 -->
+      <div class="col-md-6 text-center">
+          <div class="oval text-center">
+              <h2 class="mb-0"></h2>
+              <h3 class="mb-0 mt-5">Contactanos</h3>
+          </div>
+          <p>Tel. 8128046730 <br> Blvd. Diego Díez <br> Libreriaazul@outlook.com</p>
+      </div>
+  </div>
+</div>
+
+
+    <!-- jQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="Js/sb.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</body>
+</html>
