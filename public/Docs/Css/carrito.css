@@ -1,0 +1,57 @@
+/*navbar design*/
+.navbar {
+    background-color: navy;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: white;
+}
+
+/*navar cart design*/
+.navbar-nav .nav-link .fas.fa-shopping-cart {
+    color: white;
+    font-size: 15px; 
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+#login-link .fas.fa-sign-in-alt,
+.navbar-nav .nav-link .fas.fa-shopping-cart {
+    font-size: 15px; 
+    margin-right: 1px;
+    margin-left: 1px;
+}
+/*logo design*/
+#IMG1{
+    width: 100px;
+    height: 75px;
+    border: 5px solid;
+    border-color: rgba(248, 244, 244, 0.986);
+    border-radius: 2px;
+    image-rendering: optimizeQuality;
+}
+
+/*diseño de los links*/
+.nav-item {
+    position: relative; /* Ajusta la posición de las líneas */
+}
+
+.nav-item:not(:last-child):after {
+    content: ""; 
+    position: absolute; 
+    top: 50%; 
+    right: 0; 
+    transform: translateY(-50%); 
+    height: calc(100% - 20px); 
+    border-right: 2px solid black; 
+}
+
+.nav-link {
+    padding: 10px 20px; 
+    transition: transform 0.3s ease; 
+}
+
+.nav-link:hover {
+    transform: translateY(-5px); 
+}

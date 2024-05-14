@@ -1,0 +1,16 @@
+
+        .logo-container {
+            height: 100vh;
+            background-color: navy; /* Color navy */
+            padding: 20px;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        p { 
+            color: white;
+        }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Compra</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="Css/metodo.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Cuarto de la pantalla para el logo -->
+            <div class="col-md-3 p-0">
+                <div class="logo-container">
+                    <a href="index.html">
+                        <img src="https://i.imgur.com/7w4wg5l.png" alt="Logo">
+                    </a>
+                    <p>No estas decidido a comprar, puedes volver al inicio desde aqui.</p>
+                </div>
+            </div>
+            <!-- Tres cuartos de la pantalla para el formulario de compra -->
+            <div class="col-md-9">
+                <!-- Contenido de la página -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-6">
+                        <h1 class="text-center mb-4">Detalles de la Compra</h1>
+                        <form id="compraForm">
+                            <!-- Otros campos del formulario -->
+                            <div class="form-group">
+                                <label for="metodoPago">Método de Pago</label>
+                                <select class="form-control" id="metodoPago" required>
+                                    <option value="">Seleccione un método de pago</option>
+                                    <option value="tarjeta">Tarjeta de Crédito</option>
+                                    <option value="paypal">PayPal</option>
+                                </select>
+                            </div>
+                            <!-- Campos de PayPal -->
+                            <div id="paypalFields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="correoPayPal">Correo de PayPal</label>
+                                    <input type="email" class="form-control" id="correoPayPal" placeholder="Correo de PayPal">
+                                </div>
+                                <!-- Otros campos de PayPal aquí -->
+                            </div>
+                            <!-- Campos de Tarjeta de Crédito -->
+                            <div id="tarjetaFields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="numTarjeta">Número de Tarjeta</label>
+                                    <input type="text" class="form-control" id="numTarjeta" placeholder="Número de Tarjeta">
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="expMes">Mes de Expiración</label>
+                                        <input type="text" class="form-control" id="expMes" placeholder="MM">
+                                    </div>
+                                    <div class="col">
+                                        <label for="expAnio">Año de Expiración</label>
+                                        <input type="text" class="form-control" id="expAnio" placeholder="AAAA">
+                                    </div>
+                                    <div class="col">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="nombreTarjeta">Nombre del Titular</label>
+                                    <input type="text" class="form-control" id="nombreTarjeta" placeholder="Nombre del Titular">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Realizar Compra</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="Js/metodo.js"></script>
+</body>
+</html>

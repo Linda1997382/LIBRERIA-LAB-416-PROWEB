@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azul Book store</title>
+    <title>Carrito</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="Css/styles.css">
+    <link rel="stylesheet" href="Css/carrito.css">
 </head>
 <body>
     <header>
@@ -51,57 +51,34 @@
         </nav>
     </header>
 
-    <!--Links bajo cabecera-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="catalogo.php">Catálogo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="bestsellers.php">Bestsellers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="recomendados.php">Recomendados</a>
-                    </li>
+    <!--carrito-->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Carrito de Compras</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-group" id="cart-items">
+                    <!-- Aquí se mostrarán los elementos del carrito -->
                 </ul>
             </div>
-        </div>
-    </nav>
-
-    <!-- Carrusel -->
-    <div id="carouselExampleIndicators" class="carousel slide mx-auto" style="width: 80%;" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://d2m1kqghccc19k.cloudfront.net/wp-content/uploads/2019/04/24192345/libros-800x600.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://d2m1kqghccc19k.cloudfront.net/wp-content/uploads/2019/04/24192345/libros-800x600.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://d2m1kqghccc19k.cloudfront.net/wp-content/uploads/2019/04/24192345/libros-800x600.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Resumen de la Compra</h5>
+                        <div class="d-flex justify-content-between">
+                            <span>Total:</span>
+                            <span id="total-price">$0</span>
+                        </div>
+                        <a href="metododepago.html" class="btn btn-primary mt-3">Realizar Compra</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Siguiente</span>
-        </a>
     </div>
-
     <!-- jQuery y Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="Js/carrito.js"></script>
 </body>
 </html>
