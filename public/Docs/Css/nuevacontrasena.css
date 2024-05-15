@@ -1,0 +1,19 @@
+.container {
+    max-width: 500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  #resetPasswordContainer {
+    display: none;
+    color: greenyellow;
+  }
+  body{
+      font-family: Arial, Helvetica, sans-serif;
+      background-color:navy;
+  }
+  h1, h2, label{
+      color: white;
+  }
+  #resetMessage{
+      color: aqua;
+  }
