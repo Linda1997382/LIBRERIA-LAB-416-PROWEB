@@ -1,236 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre Nosotros</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <!-- Font Awesome -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   <!-- CSS personalizado -->
-  <link rel="stylesheet" href="Css/sobrenosotros.css">
-  <style>
-    .navy-bg {
-        background-color: navy;
-        color: white;
-    }
-    /* Estilo para el logotipo */
-    .navbar-brand img {
-        max-height: 70px; /* Ajusta aquí el tamaño deseado */
-    }
-    /* Estilo para el título "Mi Perfil" */
-    .title {
-        margin-top: 20px; /* Ajusta aquí la separación deseada */
-    }
-    /* Alinear "Mi Perfil" del lado derecho con el del lado izquierdo */
-    .right-col {
-        display: flex;
-        align-items: flex-start;
-    }
-    /* Estilo para el icono de usuario */
-    .user-icon {
-        font-size: 24px;
-        margin-right: 5px;
-        color: navy; /* Color del icono */
-    }
-    /* Estilo para el icono de carrito */
-    .cart-icon {
-        font-size: 24px;
-    }
-    /* Estilo para el rectángulo azul */
-    .blue-rectangle {
-        background-color: navy;
-        height: 70px; /* Ajusta aquí la altura deseada */
-        width: 100%;
-        margin-top: 20px;
-    }
-    /* Estilo para mover "Mi Perfil 2" a la esquina izquierda */
-    .profile2 {
-        text-align: left;
-        margin-left: 0; /* Ajusta aquí el margen deseado */
-    }
-    /* Ajustar el ancho de las columnas */
-    .half-width {
-        width: 50%;
-    }
-    /* Estilo para las secciones "Mi Perfil" */
-    .profile-section {
-        padding: 20px; /* Ajusta el espaciado interior */
-        border: 1px solid navy; /* Borde alrededor del contenido */
-        border-radius: 10px; /* Bordes redondeados */
-        margin-bottom: 20px; /* Espacio entre las secciones */
-    }
-    /* Estilo para los títulos de las secciones "Mi Perfil" */
-    .profile-section-title {
-        background-color: navy;
-        color: white;
-        padding: 10px; /* Ajusta el espaciado interior */
-        border-radius: 5px; /* Bordes redondeados */
-        margin-top: 0; /* Elimina el margen superior */
-    }
-    /* Estilo para los iconos de usuario */
-    .user-icon {
-        font-size: 30px; /* Tamaño del icono */
-        color: navy; /* Color del icono */
-        margin-right: 10px; /* Espacio entre el icono y el texto */
-    }
-    /* Estilo para el contenedor de Mi Perfil 1 */
-    .profile-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual ancho */
-        grid-gap: 10px; /* Espacio entre las cajas de texto */
-    }
-    /* Estilo para la sección Mi contacto */
-    .contact-section {
-        grid-column: span 2; /* Ocupa dos columnas completas */
-    }
-    /* Estilo para la sección de cajas de texto */
-    .text-box {
-        margin-bottom: 10px; /* Espacio entre las cajas de texto */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="Css/MiPerfil.css">
+    <style>
+        .navy-bg {
+            background-color: navy;
+            color: white;
+        }
+
+        .navbar-brand img {
+            max-height: 70px;
+        }
+
+        .title {
+            margin-top: 20px;
+        }
+
+        .profile2 .user-icon {
+            margin-right: 10px;
+            color: navy;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .user-icon-img {
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .list-group-item:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .list-group-item {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navy-bg">
-        <a class="navbar-brand" href="index.html">
-          <img  id="IMG1" src="https://i.imgur.com/7w4wg5l.png" class="img-fluid">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="Soporte.html">Soporte<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Sobre nosotros</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0 ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a id="login-link" class="nav-link" href="login.html">
-                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                    </a>
-                </li>
-            </ul>                
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="carrito.html">
-                        <i class="fas fa-shopping-cart"></i> Carrito de Compras
-                    </a>
-                </li>
-            </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navy-bg">
+            <a class="navbar-brand" href="index.html">
+                <img id="IMG1" src="https://i.imgur.com/7w4wg5l.png" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Soporte.html">Soporte<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Sobre nosotros</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 search-bar">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button id="search-btn" class="btn btn-outline-success my-2 my-sm-0" type="button">Buscar</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i class="fas fa-sign-out-alt sign-out-icon"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="navy-bg text-center mb-4">
+                    <h2 class="title profile2"><i class="fas fa-user user-icon"></i alt="Usuario">Usuario</h2>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item profile-list-item"><i class="fas fa-user"></i> Mi Perfil</li>
+                    <li class="list-group-item cart-list-item"><i class="fas fa-shopping-cart cart-icon"></i> Carrito de Compras</li>
+                    <li class="list-group-item sign-out-list-item"><i class="fas fa-sign-out-alt sign-out-icon"></i> Cerrar Sesión</li>
+                </ul>
+            </div>
+
+            <div class="col-md-8">
+                <div>
+                    <h3 class="profile-section-title">Mi Perfil </h3>
+                    <p><strong>Hola [Usuario]</strong></p>
+                    <p>Desde aquí tienes la posibilidad de ver resúmenes de tus actividades recientes y actualizar
+                        la información de tu cuenta. Elige uno de los siguientes enlaces para ver o modificar la
+                        información.</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-box contact-section">
+                                <form>
+                                    <h4><strong>Mi contacto</strong></h4>
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control form-control-sm" id="nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contacto">Contacto</label>
+                                        <input type="text" class="form-control form-control-sm" id="contacto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contrasena">Cambiar contraseña</label>
+                                        <input type="password" class="form-control form-control-sm" id="contrasena">
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-box">
+                                <form>
+                                    <h4><strong>Método de pago</strong></h4>
+                                    <div class="form-group">
+                                        <label for="titular">Titular</label>
+                                        <input type="text" class="form-control form-control-sm" id="titular">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" class="form-control form-control-sm" id="cvv">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tarjeta">Número de tarjeta</label>
+                                        <input type="text" class="form-control form-control-sm" id="tarjeta">
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-box">
+                        <form>
+                            <h4><strong>Dirección</strong></h4>
+                            <div class="form-group">
+                                <label for="dirTitular">Titular</label>
+                                <input type="text" class="form-control form-control-sm" id="dirTitular">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp">CP</label>
+                                <input type="text" class="form-control form-control-sm" id="cp">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Número de Teléfono</label>
+                                <input type="text" class="form-control form-control-sm" id="telefono">
+                            </div>
+                            <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-</header>
+    </div>
 
-<div class="container">
-  <div class="row align-items-center">
-      <!-- Mitad izquierda -->
-      <div class="col-md-6 half-width">
-          <div class="navy-bg text-center mb-4">
-              <h2 class="title profile2"><i class="fas fa-user user-icon"></i>Mi Perfil 2</h2>
-          </div>
-          <ul class="list-group">
-              <li class="list-group-item"><i class="fas fa-user user-icon"></i>Mi Perfil</li>
-              <li class="list-group-item">Carrito de Compras <i class="fas fa-shopping-cart cart-icon"></i></li>
-          </ul>
-          <div class="blue-box mt-4"></div> <!-- Caja azul para decoración -->
-      </div>
-      
-      
-      <!-- Mitad derecha -->
-      <div class="col-md-6 right-col half-width">
-          <div class="navy-bg text-center mb-4">
-          </div>
-          <!-- Texto adicional -->
-          <div class="ml-3 profile-section">
-              <h3 class="profile-section-title">Mi Perfil 1</h3>
-              <p><strong>Hola [Usuario]</strong></p>
-              <p>Desde aquí tienes la posibilidad de ver resúmenes de tus actividades recientes y actualizar la información de tu cuenta. Elige uno de los siguientes enlaces para ver o modificar la información.</p>
-              <hr> <!-- Línea separadora -->
-              
-              <!-- Sección de cajas de texto -->
-              <div class="profile-container">
-                  <!-- Caja de texto 1: Mi contacto -->
-                  <div class="text-box contact-section">
-                      <h4><strong>Mi contacto</strong></h4>
-                      <div class="form-group">
-                          <label for="nombre">Nombre</label>
-                          <input type="text" class="form-control form-control-sm" id="nombre">
-                      </div>
-                      <div class="form-group">
-                          <label for="contacto">Contacto</label>
-                          <input type="text" class="form-control form-control-sm" id="contacto">
-                      </div>
-                      <div class="form-group">
-                          <label for="contrasena">Cambiar contraseña</label>
-                          <input type="password" class="form-control form-control-sm" id="contrasena">
-                      </div>
-                      <button type="button" class="btn btn-primary btn-sm">Modificar</button>
-                  </div>
-                  
-                  <!-- Caja de texto 2: Metodo de pago -->
-                  <div class="text-box">
-                      <h4><strong>Método de pago</strong></h4>
-                      <div class="form-group">
-                          <label for="titular">Titular</label>
-                          <input type="text" class="form-control form-control-sm" id="titular">
-                      </div>
-                      <div class="form-group">
-                          <label for="cvv">CVV</label>
-                          <input type="text" class="form-control form-control-sm" id="cvv">
-                      </div>
-                      <div class="form-group">
-                          <label for="tarjeta">Número de tarjeta</label>
-                          <input type="text" class="form-control form-control-sm" id="tarjeta">
-                      </div>
-                      <button type="button" class="btn btn-primary btn-sm">Modificar</button>
-                  </div>
-                  
-                  <!-- Caja de texto 3: Direccion -->
-                  <div class="text-box">
-                      <h4><strong>Dirección</strong></h4>
-                      <div class="form-group">
-                          <label for="dirTitular">Titular</label>
-                          <input type="text" class="form-control form-control-sm" id="dirTitular">
-                      </div>
-                      <div class="form-group">
-                          <label for="cp">CP</label>
-                          <input type="text" class="form-control form-control-sm" id="cp">
-                      </div>
-                      <div class="form-group">
-                          <label for="telefono">Número de Teléfono</label>
-                          <input type="text" class="form-control form-control-sm" id="telefono">
-                      </div>
-                      <button type="button" class="btn btn-primary btn-sm">Modificar</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-<!-- Rectángulo azul -->
-<div class="blue-rectangle"></div>
-
-
-    <!-- jQuery y Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="Js/sb.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#search-btn').click(function () {
+                $('.btn-outline-success').toggleClass('btn-outline-success btn-success');
+            });
+        });
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </body>
+
 </html>
