@@ -35,3 +35,47 @@ body {
     border-radius: 2px;
     image-rendering: optimizeQuality;
 }
+/*Admin profile*/
+.navy-bg {
+    background-color: navy;
+    color: white;
+}
+.title {
+    margin-top: 20px;
+}
+
+.profile2 .user-icon {
+    margin-right: 10px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.user-icon-img {
+    margin-bottom: 10px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.list-group-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-box {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        width: 100%;
+    }
+}

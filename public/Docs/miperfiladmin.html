@@ -7,59 +7,8 @@
     <title>Mi Perfil Administrador</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Css\miperfil.css">
-    <style>
-        .navy-bg {
-            background-color: navy;
-            color: white;
-        }
-
-        .navbar-brand img {
-            max-height: 70px;
-        }
-
-        .title {
-            margin-top: 20px;
-        }
-
-        .profile2 .user-icon {
-            margin-right: 10px;
-            color: navy;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .user-icon-img {
-            margin-bottom: 10px;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
-        }
-
-        .list-group-item:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .list-group-item {
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .search-bar {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .text-box {
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .col-md-6 {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="Css\admin.css">
 </head>
-
 <body>
 
     <header>
@@ -77,7 +26,7 @@
                         <a class="nav-link" href="Soporte.html">Soporte<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Sobre nosotros</a>
+                        <a class="nav-link active" href="sobrenosotros.html">Sobre nosotros</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 search-bar">
@@ -87,7 +36,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i
-                                class="fas fa-sign-out-alt sign-out-icon"></i></a>
+                                class="fas fa-sign-out-alt sign-out-icon"></i></a> 
                     </li>
                 </ul>
             </div>
@@ -102,9 +51,7 @@
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item profile-list-item"><i class="fas fa-user"></i> Mi Perfil</li>
-                    <li class="list-group-item cart-list-item"><i class="fas fa-shopping-cart cart-icon"></i> Inventario de Productos</li>
-                    <li class="list-group-item sign-out-list-item"><i class="fas fa-sign-out-alt sign-out-icon"></i>
-                        Cerrar Sesión</li>
+                    <li class="list-group-item cart-list-item"><i class="fas fa-shopping-cart cart-icon"></i>Inventario de Productos</li>
                     <!-- Nuevos elementos -->
                     <li class="list-group-item"><i class="fas fa-user-cog"></i> Administración de cuentas</li>
                     <li class="list-group-item"><i class="fas fa-users"></i> Autores</li>
@@ -168,7 +115,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -180,5 +126,4 @@
         });
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 </body>
