@@ -7,8 +7,180 @@
     <title>Azul Book store</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Css\admin.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navy-bg {
+            background-color: navy;
+            color: white;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fffffe;
+        }
+
+        /* Sidebar styles */
+        .list-group-item {
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .list-group-item:hover {
+            background-color: #007bff;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .list-group-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .list-group-item a:hover {
+            color: white;
+        }
+
+        .list-group-item.active {
+            background-color: #0056b3;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        /* Form styles */
+        .text-box {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-box h4 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .text-box .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .text-box .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .text-box .form-control {
+            border-radius: 0;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            margin-bottom: 20px;
+            background-color: navy;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-brand img {
+            width: 100px;
+            height: 75px;
+            border: 5px solid rgba(248, 244, 244, 0.986);
+            border-radius: 2px;
+            image-rendering: optimizeQuality;
+        }
+
+        .search-bar input {
+            border-radius: 20px;
+            padding-left: 15px;
+        }
+
+        .search-bar button {
+            border-radius: 20px;
+        }
+
+        .sign-out-list-item .sign-out-icon {
+            margin-left: 5px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: navy;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ffc107;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Additional styles */
+        .title {
+            margin-top: 20px;
+        }
+
+        .profile2 .user-icon {
+            margin-right: 10px;
+            color: navy;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .user-icon-img {
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .navbar-nav .nav-link .fas.fa-shopping-cart,
+        #login-link .fas.fa-sign-in-alt {
+            font-size: 15px;
+            margin-right: 1px;
+            margin-left: 1px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            height: calc(100% - 20px);
+            border-right: 2px solid black;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
+
 <body>
 
     <header>
@@ -36,9 +208,9 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i
-                                class="fas fa-sign-out-alt sign-out-icon"></i></a> <!--falta referencia-->
+                                class="fas fa-sign-out-alt sign-out-icon"></i></a>
                     </li>
-                </ul>    
+                </ul>
             </div>
         </nav>
     </header>
@@ -47,23 +219,22 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="navy-bg text-center mb-4">
-                    <h2 class="title profile2"><i class="fas fa-user user-icon"></i alt="Usuario">Administrador</h2>
+                    <h2 class="title profile2"><i class="fas fa-user user-icon"></i>Administrador</h2>
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item profile-list-item"><i class="fas fa-user"></i> Mi Perfil</li>
-                    <li class="list-group-item cart-list-item"><i class="fas fa-shopping-cart cart-icon"></i>Inventario de Productos</li>
-                    <!-- Nuevos elementos -->
-                    <li class="list-group-item"><i class="fas fa-user-cog"></i> Administración de cuentas</li>
-                    <li class="list-group-item"><i class="fas fa-users"></i> Autores</li>
-                    <li class="list-group-item"><i class="fas fa-book"></i> Editoriales</li>
-                    <li class="list-group-item"><i class="fas fa-tags"></i> Categorías</li>
-                    <li class="list-group-item"><i class="fas fa-chart-bar"></i> Reportes</li>
+                    <li class="list-group-item cart-list-item"><a class="nav-link styled-link" href="inventarioproductos.html"><i class="fas fa-shopping-cart cart-icon"></i> Inventario de Productos</a></li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="administracioncuentas.html"><i class="fas fa-user-cog"></i> Administración de cuentas</a></li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="autores.html"><i class="fas fa-users"></i> Autores</a></li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="editoriales.html"><i class="fas fa-book"></i> Editoriales</a></li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="categorias.html"><i class="fas fa-tags"></i> Categorías</a></li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="reportes.html"><i class="fas fa-chart-bar"></i> Reportes</a></li>
                 </ul>
             </div>
 
             <div class="col-md-8">
                 <div>
-                    <h3 class="profile-section-title">Mi Perfil </h3>
+                    <h3 class="profile-section-title">Mi Perfil</h3>
                     <p><strong>Hola [Administrador]</strong></p>
                     <p>Desde aquí tienes la posibilidad de ver resúmenes de tus actividades recientes y actualizar la
                         información de tu cuenta. Elige uno de los siguientes enlaces para ver o modificar la información.
@@ -125,5 +296,6 @@
             });
         });
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </body>
+
+</html>
