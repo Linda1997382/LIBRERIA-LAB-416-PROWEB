@@ -36,6 +36,9 @@ body {
     image-rendering: optimizeQuality;
 }
 /*Admin profile*/
+h3{
+    margin-top: 5%;
+}
 .navy-bg {
     background-color: navy;
     color: white;
