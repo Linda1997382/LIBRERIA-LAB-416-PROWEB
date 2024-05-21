@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2024 a las 23:16:45
+-- Tiempo de generación: 21-05-2024 a las 05:30:43
 -- Versión del servidor: 8.0.36
 -- Versión de PHP: 8.2.12
 
@@ -219,11 +219,7 @@ CREATE TABLE `privilegio` (
 
 INSERT INTO `privilegio` (`ID`, `Nombre`) VALUES
 (1, 'Usuario estándar'),
-(2, 'Administrador'),
-(3, 'Editor'),
-(4, 'Usuario estándar'),
-(5, 'Administrador'),
-(6, 'Editor');
+(2, 'Administrador');
 
 -- --------------------------------------------------------
 
@@ -269,6 +265,14 @@ CREATE TABLE `ventadetalle` (
 --
 -- Disparadores `ventadetalle`
 --
+DELIMITER $$
+CREATE TRIGGER `actualizar_VentasAcumuladas` AFTER INSERT ON `ventadetalle` FOR EACH ROW BEGIN
+   UPDATE bestseller
+   SET VentasAcumuladas = VentasAcumuladas + NEW.cantidad
+   WHERE LibroID = NEW.LibroID;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `actualizar_ventas_acumuladas` AFTER INSERT ON `ventadetalle` FOR EACH ROW BEGIN
     -- Actualiza las ventas acumuladas en la tabla bestsellers
