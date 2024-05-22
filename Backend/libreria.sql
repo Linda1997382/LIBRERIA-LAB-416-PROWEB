@@ -11,81 +11,92 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT;
+SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS;
+SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION;
+SET NAMES utf8mb4;
 
 --
--- Base de datos: `libreria`
+-- Base de datos: libreria
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `autor`
+-- Estructura de tabla para la tabla autor
 --
 
-CREATE TABLE `autor` (
-  `ID` int NOT NULL,
-  `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Nacionalidad` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `FechaNacimiento` date DEFAULT NULL,
-  `Biografia` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+CREATE TABLE autor (
+  ID int NOT NULL,
+  Nombre varchar(100) NOT NULL,
+  Nacionalidad varchar(100) DEFAULT NULL,
+  FechaNacimiento date DEFAULT NULL,
+  Biografia text,
+  PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `autorcategoria`
+-- Estructura de tabla para la tabla autorcategoria
 --
 
-CREATE TABLE `autorcategoria` (
-  `AutorID` int NOT NULL,
-  `CategoriaID` int NOT NULL
+CREATE TABLE autorcategoria (
+  AutorID int NOT NULL,
+  CategoriaID int NOT NULL,
+  PRIMARY KEY (AutorID, CategoriaID),
+  KEY CategoriaID (CategoriaID),
+  CONSTRAINT autorcategoria_ibfk_1 FOREIGN KEY (AutorID) REFERENCES autor (ID),
+  CONSTRAINT autorcategoria_ibfk_2 FOREIGN KEY (CategoriaID) REFERENCES categoria (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bestseller`
+-- Estructura de tabla para la tabla bestseller
 --
 
-CREATE TABLE `bestseller` (
-  `LibroID` int NOT NULL,
-  `FechaLogro` date DEFAULT NULL,
-  `VentasAcumuladas` bigint DEFAULT '0'
+CREATE TABLE bestseller (
+  LibroID int NOT NULL,
+  FechaLogro date DEFAULT NULL,
+  VentasAcumuladas bigint DEFAULT '0',
+  PRIMARY KEY (LibroID),
+  CONSTRAINT bestseller_ibfk_1 FOREIGN KEY (LibroID) REFERENCES libro (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `carrito`
+-- Estructura de tabla para la tabla carrito
 --
 
-CREATE TABLE `carrito` (
-  `UsuarioID` int NOT NULL,
-  `LibroID` int NOT NULL,
-  `Cantidad` int DEFAULT NULL
+CREATE TABLE carrito (
+  UsuarioID int NOT NULL,
+  LibroID int NOT NULL,
+  Cantidad int DEFAULT NULL,
+  PRIMARY KEY (UsuarioID, LibroID),
+  KEY LibroID (LibroID),
+  CONSTRAINT carrito_ibfk_1 FOREIGN KEY (UsuarioID) REFERENCES usuario (ID),
+  CONSTRAINT carrito_ibfk_2 FOREIGN KEY (LibroID) REFERENCES libro (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Estructura de tabla para la tabla categoria
 --
 
-CREATE TABLE `categoria` (
-  `ID` int NOT NULL,
-  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+CREATE TABLE categoria (
+  ID int NOT NULL,
+  Nombre varchar(50) NOT NULL,
+  PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `categoria`
+-- Volcado de datos para la tabla categoria
 --
 
-INSERT INTO `categoria` (`ID`, `Nombre`) VALUES
+INSERT INTO categoria (ID, Nombre) VALUES
 (1, 'Ficción'),
 (2, 'No ficción'),
 (3, 'Ciencia ficción'),
@@ -120,169 +131,126 @@ INSERT INTO `categoria` (`ID`, `Nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `editorial`
+-- Estructura de tabla para la tabla editorial
 --
 
-CREATE TABLE `editorial` (
-  `ID` int NOT NULL,
-  `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Sede` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Fundacion` date DEFAULT NULL,
-  `Descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+CREATE TABLE editorial (
+  ID int NOT NULL,
+  Nombre varchar(100) NOT NULL,
+  Sede varchar(100) DEFAULT NULL,
+  Fundacion date DEFAULT NULL,
+  Descripcion text,
+  PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `libro`
+-- Estructura de tabla para la tabla libro
 --
 
-CREATE TABLE `libro` (
-  `ID` int NOT NULL,
-  `Titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `AutorID` int DEFAULT NULL,
-  `EditorialID` int DEFAULT NULL,
-  `Precio` decimal(10,2) NOT NULL,
-  `Descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `CategoriaID` int DEFAULT NULL,
-  `Imagen` varchar(255) DEFAULT NULL
+CREATE TABLE libro (
+  ID int NOT NULL,
+  Titulo varchar(255) NOT NULL,
+  AutorID int DEFAULT NULL,
+  EditorialID int DEFAULT NULL,
+  Precio decimal(10,2) NOT NULL,
+  Descripcion text,
+  CategoriaID int DEFAULT NULL,
+  Imagen varchar(255) DEFAULT NULL,
+  PRIMARY KEY (ID),
+  KEY AutorID (AutorID),
+  KEY EditorialID (EditorialID),
+  KEY CategoriaID (CategoriaID),
+  CONSTRAINT libro_ibfk_1 FOREIGN KEY (AutorID) REFERENCES autor (ID),
+  CONSTRAINT libro_ibfk_2 FOREIGN KEY (EditorialID) REFERENCES editorial (ID),
+  CONSTRAINT libro_ibfk_3 FOREIGN KEY (CategoriaID) REFERENCES categoria (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `librocategoria`
+-- Estructura de tabla para la tabla librocategoria
 --
 
-CREATE TABLE `librocategoria` (
-  `LibroID` int NOT NULL,
-  `CategoriaID` int NOT NULL
+CREATE TABLE librocategoria (
+  LibroID int NOT NULL,
+  CategoriaID int NOT NULL,
+  PRIMARY KEY (LibroID, CategoriaID),
+  KEY CategoriaID (CategoriaID),
+  CONSTRAINT librocategoria_ibfk_1 FOREIGN KEY (LibroID) REFERENCES libro (ID),
+  CONSTRAINT librocategoria_ibfk_2 FOREIGN KEY (CategoriaID) REFERENCES categoria (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `libroeditorial`
+-- Estructura de tabla para la tabla usuario
 --
 
-CREATE TABLE `libroeditorial` (
-  `LibroiD` int NOT NULL,
-  `EditorialID` int NOT NULL
+CREATE TABLE usuario (
+  ID int NOT NULL,
+  Nombre varchar(100) NOT NULL,
+  Email varchar(100) NOT NULL,
+  Password varchar(255) NOT NULL,
+  PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `librorecomendado`
+-- Estructura de tabla para la tabla ventadetalle
 --
 
-CREATE TABLE `librorecomendado` (
-  `LibroID` int NOT NULL,
-  `FechaRecomendacion` date DEFAULT NULL,
-  `Motivo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+CREATE TABLE ventadetalle (
+  VentaID int NOT NULL,
+  LibroID int NOT NULL,
+  Cantidad int NOT NULL,
+  Precio decimal(10,2) NOT NULL,
+  PRIMARY KEY (VentaID, LibroID),
+  KEY LibroID (LibroID),
+  CONSTRAINT ventadetalle_ibfk_1 FOREIGN KEY (VentaID) REFERENCES venta (ID),
+  CONSTRAINT ventadetalle_ibfk_2 FOREIGN KEY (LibroID) REFERENCES libro (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `metodopago`
+-- Estructura de tabla para la tabla venta
 --
 
-CREATE TABLE `metodopago` (
-  `ID` int NOT NULL,
-  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+CREATE TABLE venta (
+  ID int NOT NULL,
+  UsuarioID int NOT NULL,
+  Fecha datetime NOT NULL,
+  Total decimal(10,2) NOT NULL,
+  PRIMARY KEY (ID),
+  KEY UsuarioID (UsuarioID),
+  CONSTRAINT venta_ibfk_1 FOREIGN KEY (UsuarioID) REFERENCES usuario (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `metodopago`
+-- Triggers
 --
 
-INSERT INTO `metodopago` (`ID`, `Nombre`) VALUES
-(1, 'Tarjeta de crédito'),
-(2, 'Transferencia bancaria'),
-(3, 'PayPal');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `privilegio`
---
-
-CREATE TABLE `privilegio` (
-  `ID` int NOT NULL,
-  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `privilegio`
---
-
-INSERT INTO `privilegio` (`ID`, `Nombre`) VALUES
-(1, 'Usuario estándar'),
-(2, 'Administrador');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `ID` int NOT NULL,
-  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Correo` varchar(320) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Contraseña` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Direccion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `PrivilegioID` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `venta`
---
-
-CREATE TABLE `venta` (
-  `ID` int NOT NULL,
-  `LibroID` int DEFAULT NULL,
-  `Cantidad` int DEFAULT NULL,
-  `FechaVenta` datetime DEFAULT CURRENT_TIMESTAMP,
-  `MetodoPagoID` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventadetalle`
---
-
-CREATE TABLE `ventadetalle` (
-  `VentaID` int NOT NULL,
-  `LibroID` int NOT NULL,
-  `Cantidad` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Disparadores `ventadetalle`
---
 DELIMITER $$
-CREATE TRIGGER `actualizar_VentasAcumuladas` AFTER INSERT ON `ventadetalle` FOR EACH ROW BEGIN
+
+CREATE TRIGGER actualizar_VentasAcumuladas 
+AFTER INSERT ON ventadetalle 
+FOR EACH ROW 
+BEGIN
    UPDATE bestseller
-   SET VentasAcumuladas = VentasAcumuladas + NEW.cantidad
+   SET VentasAcumuladas = VentasAcumuladas + NEW.Cantidad
    WHERE LibroID = NEW.LibroID;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `actualizar_ventas_acumuladas` AFTER INSERT ON `ventadetalle` FOR EACH ROW BEGIN
-    -- Actualiza las ventas acumuladas en la tabla bestsellers
-    UPDATE bestsellers
-    SET ventas_acumuladas = ventas_acumuladas + NEW.cantidad
-    WHERE libro_id = NEW.libro_id;
-END
-$$
+END$$
+
 DELIMITER ;
 
+COMMIT;
+
+SET @OLD_CHARACTER_SET_CLIENT=NULL;
+SET @OLD_CHARACTER_SET_RESULTS=NULL;
+SET @OLD_COLLATION_CONNECTION=NULL;
 --
 -- Índices para tablas volcadas
 --

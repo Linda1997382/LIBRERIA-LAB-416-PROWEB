@@ -1,19 +1,16 @@
 {
-  "name": "backend",
+  "name": "nombre-del-proyecto",
   "version": "1.0.0",
-  "main": "Servidor.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@babel/cli": "^7.24.5",
     "@babel/core": "^7.24.5",
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.5",
+    "babel": "^6.23.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -23,5 +20,6 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.7"
-  }
+  },
+  "type": "module"
 }

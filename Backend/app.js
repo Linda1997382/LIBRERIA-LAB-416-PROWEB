@@ -1,5 +1,6 @@
 import express from 'express';
 import config from './config.js';
+import usersRoutes from './routes/users.js';
 
 const app = express();
 
@@ -9,7 +10,8 @@ app.set('port', config.port);
 // Middlewares
 app.use(express.json());
 
-// Rutas (aquí defines tus rutas)
+// Rutas
+app.use('/api/users', usersRoutes);
 
 // Exporta la aplicación configurada
 export default app;
