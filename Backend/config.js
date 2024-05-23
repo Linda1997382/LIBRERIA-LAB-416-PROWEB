@@ -2,13 +2,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const config = {
-  port: process.env.PORT || 3000,
-  dbServer: process.env.DB_SERVER || 'localhost',
-  dbPort: process.env.DB_PORT || 3307, // Cambia el puerto aquí
-  dbUser: process.env.DB_USER || 'root',
-  dbPassword: process.env.DB_PASSWORD || 'lucin12345',
-  dbDatabase: process.env.DB_DATABASE || 'libreria',
+  db: {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+  },
+  server: {
+    port: process.env.PORT || 3000,
+  },
 };
 
 export default config;
-

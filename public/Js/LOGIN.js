@@ -1,61 +1,40 @@
-$(document).ready(function(){
-    // Manejar clic en el enlace de registro
-    $('a[href="registro.html"]').click(function(e){
-        e.preventDefault(); // Previene el comportamiento predeterminado del enlace
-        window.location.href = $(this).attr('href'); // Redirige a la página de registro
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('loginForm');
+    const errorContainer = document.getElementById('error-container');
 
-    // Manejar el envío del formulario de usuario
-    $('#loginForm').submit(function(e) {
-        e.preventDefault(); // Evita que se envíe el formulario automáticamente
-        handleFormSubmit($(this), '#username', '#password');
-    });
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-    // Manejar el envío del formulario de administrador
-    $('#adminLoginForm').submit(function(e) {
-        e.preventDefault(); // Evita que se envíe el formulario automáticamente
-        handleFormSubmit($(this), '#adminUsername', '#adminPassword');
-    });
+        const username = form.username.value;
+        const password = form.password.value;
 
-    // Función general para manejar el envío de ambos formularios
-    function handleFormSubmit(form, usernameSelector, passwordSelector) {
-        var username = $(usernameSelector).val();
-        var password = $(passwordSelector).val();
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
 
-        // Validar el correo electrónico
-        if (!validateEmail(username)) {
-            showError(form, 'Por favor, introduce un correo electrónico válido.');
-            return;
+            const result = await response.json();
+
+            if (response.ok) {
+                // Redirigir a la página principal o realizar otras acciones necesarias
+                window.location.href = 'index.html';
+            } else {
+                showError(result.message);
+            }
+        } catch (error) {
+            showError('Error al intentar iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
         }
+    });
 
-        // Validar la contraseña
-        if (!password) {
-            showError(form, 'Por favor, introduce tu contraseña.');
-            return;
+    function showError(message) {
+        if (errorContainer) {
+            errorContainer.innerHTML = `<div class="alert alert-danger" role="alert">${message}</div>`;
+        } else {
+            console.error('El contenedor de errores no ha sido encontrado en el DOM.');
         }
-
-        // Si todas las validaciones pasan, enviar el formulario
-        form.off('submit').submit(); // Desactivar el manejador de eventos y enviar
-    }
-
-    // Función para validar el formato de correo electrónico
-    function validateEmail(email) {
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    }
-
-    // Función para mostrar mensajes de error con animaciones
-    function showError(form, message) {
-        // Remover cualquier mensaje de error existente
-        form.find('.error-message').remove();
-
-        // Crear un elemento div para el mensaje de error
-        var errorDiv = $('<div>').addClass('error-message').text(message);
-
-        // Añadir el mensaje de error al formulario
-        form.prepend(errorDiv);
-
-        // Cambiar el color del texto a rojo (opcional)
-        errorDiv.css('color', 'red');
     }
 });
