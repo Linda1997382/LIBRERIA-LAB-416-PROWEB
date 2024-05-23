@@ -1,14 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil</title>
+    <title>Azul Book Store</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Css/miperfil.css">
+    <link rel="stylesheet" href="css/miperfiladmin.css">
 </head>
 
 <body>
@@ -28,7 +26,7 @@
                         <a class="nav-link" href="Soporte.html">Soporte<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="sobrenosotros.html">Sobre Nosotros</a>
+                        <a class="nav-link active" href="sobrenosotros.html">Sobre nosotros</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 search-bar">
@@ -37,7 +35,8 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i class="fas fa-sign-out-alt sign-out-icon"></i></a>
+                        <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i
+                                class="fas fa-sign-out-alt sign-out-icon"></i></a>
                     </li>
                 </ul>
             </div>
@@ -48,22 +47,22 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="navy-bg text-center mb-4">
-                    <h2 class="title profile2"><i class="fas fa-user user-icon"></i alt="Usuario">Usuario</h2>
+                    <h2 class="title profile2"><i class="fas fa-user user-icon"></i>Usuario</h2>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item profile-list-item"><i class="fas fa-user"></i> Mi Perfil</li>
-                    <li class="list-group-item cart-list-item"><i class="fas fa-shopping-cart cart-icon"></i> Carrito de Compras</li>
-                    <li class="list-group-item sign-out-list-item"><i class="fas fa-sign-out-alt sign-out-icon"></i> Cerrar Sesión</li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="Miperfil.html"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li class="list-group-item"><a class="nav-link styled-link" href="carrito.html"><i class="fas fa-shopping-cart"></i> Carrito de compras</a></li>
+                    <li class="list-group-item profile-list-item"><a class="nav-link styled-link" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesion </a></li>
                 </ul>
             </div>
 
             <div class="col-md-8">
                 <div>
-                    <h3 class="profile-section-title">Mi Perfil </h3>
+                    <h3 class="profile-section-title">Mi Perfil</h3>
                     <p><strong>Hola [Usuario]</strong></p>
-                    <p>Desde aquí tienes la posibilidad de ver resúmenes de tus actividades recientes y actualizar
-                        la información de tu cuenta. Elige uno de los siguientes enlaces para ver o modificar la
-                        información.</p>
+                    <p>Desde aquí tienes la posibilidad de ver resúmenes de tus actividades recientes y actualizar la
+                        información de tu cuenta. Elige uno de los siguientes enlaces para ver o modificar la información.
+                    </p>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
@@ -89,22 +88,44 @@
                         <div class="col-md-6">
                             <div class="text-box">
                                 <form>
-                                    <h4><strong>Método de pago</strong></h4>
+                                    <h4><strong>Direccion</strong></h4>
                                     <div class="form-group">
-                                        <label for="titular">Titular</label>
+                                        <label for="titular">Calle</label>
                                         <input type="text" class="form-control form-control-sm" id="titular">
                                     </div>
                                     <div class="form-group">
-                                        <label for="cvv">CVV</label>
-                                        <input type="text" class="form-control form-control-sm" id="cvv">
+                                        <label for="cp">CP</label>
+                                        <input type="text" class="form-control form-control-sm" id="cp">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tarjeta">Número de tarjeta</label>
-                                        <input type="text" class="form-control form-control-sm" id="tarjeta">
+                                        <label for="telefono">Número de telefono</label>
+                                        <input type="text" class="form-control form-control-sm" id="telefono">
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-box">
+                                <form>
+                                    <h4><strong>Metodo de pago</strong></h4>
+                                    <div class="form-group">
+                                        <label for="metodo1">Titular</label>
+                                        <input type="text" class="form-control form-control-sm" id="metodo1">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tarjeta">MM/AA</label>
-                                        <input type="text" class="form-control form-control-sm" id="mm/aa">
+                                        <label for="metodo2">CVV</label>
+                                        <input type="text" class="form-control form-control-sm" id="metodo2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="metodo3">Numero de tarjeta</label>
+                                        <input type="text" class="form-control form-control-sm" id="metodo3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="metodo4">MM/AA</label>
+                                        <input type="text" class="form-control form-control-sm" id="metodo4">
                                     </div>
                                     <button type="button" class="btn btn-primary btn-sm">Modificar</button>
                                 </form>
@@ -115,13 +136,16 @@
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="Js/miperfil.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <script>
+        $(document).ready(function () {
+            $('#search-btn').click(function () {
+                $('.btn-outline-success').toggleClass('btn-outline-success btn-success');
+            });
+        });
+    </script>
 </body>
 
 </html>
