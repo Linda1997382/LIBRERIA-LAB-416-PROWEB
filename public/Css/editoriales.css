@@ -1,0 +1,170 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navy-bg {
+    background-color: navy;
+    color: white;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fffffe;
+}
+
+/* Sidebar styles */
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.list-group-item:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateX(10px);
+}
+
+.list-group-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.list-group-item a:hover {
+    color: white;
+}
+
+.list-group-item.active {
+    background-color: #0056b3;
+    color: white;
+    transform: translateX(10px);
+}
+
+/* Form styles */
+.text-box {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-box h4 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.text-box .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.text-box .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.text-box .form-control {
+    border-radius: 0;
+}
+
+/* Navbar styles */
+.navbar {
+    margin-bottom: 20px;
+    background-color: navy;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-brand img {
+    width: 100px;
+    height: 75px;
+    border: 5px solid rgba(248, 244, 244, 0.986);
+    border-radius: 2px;
+    image-rendering: optimizeQuality;
+}
+
+.search-bar input {
+    border-radius: 20px;
+    padding-left: 15px;
+}
+
+.search-bar button {
+    border-radius: 20px;
+}
+
+.sign-out-list-item .sign-out-icon {
+    margin-left: 5px;
+}
+
+/* Footer styles */
+footer {
+    background-color: navy;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer a {
+    color: #ffc107;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* Additional styles */
+.title {
+    margin-top: 20px;
+}
+
+.profile2 .user-icon {
+    margin-right: 10px;
+    color: navy;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.user-icon-img {
+    margin-bottom: 10px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.navbar-nav .nav-link .fas.fa-shopping-cart,
+#login-link .fas.fa-sign-in-alt {
+    font-size: 15px;
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item:not(:last-child):after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    height: calc(100% - 20px);
+    border-right: 2px solid black;
+}
+
+.nav-link {
+    padding: 10px 20px;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-5px);
+}
