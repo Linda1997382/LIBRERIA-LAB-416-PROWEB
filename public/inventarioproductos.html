@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -66,9 +65,36 @@
                 <div>
                     <h3 class="profile-section-title">Inventario de Productos</h3>
                     <p><strong>Hola [Administrador]</strong></p>
-                    <p>Desde aquí tienes la posibilidad de ver los productos añadidos y actualizar su disponibilidad. Ademas de que tambien puedes implementar nuevos productos.
-                    </p>
+                    <p>Desde aquí tienes la posibilidad de ver los productos añadidos y actualizar su disponibilidad. Además de que también puedes implementar nuevos productos.</p>
                     <hr>
+                    <!-- Funcionalidad CRUD -->
+                    <div>
+                        <h4>Añadir/Actualizar Producto</h4>
+                        <form id="product-form">
+                            <div class="form-group">
+                                <label for="product-name">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="product-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-description">Descripción del Producto</label>
+                                <textarea class="form-control" id="product-description" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Precio</label>
+                                <input type="number" class="form-control" id="product-price" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-stock">Cantidad vendida</label>
+                                <input type="number" class="form-control" id="product-stock" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                        </form>
+                        <hr>
+                        <h4>Lista de Productos</h4>
+                        <ul class="list-group" id="product-list">
+                            <!-- Los productos se agregarán aquí dinámicamente -->
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,6 +104,70 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
+            let products = [];
+
+            $('#product-form').on('submit', function (e) {
+                e.preventDefault();
+
+                const name = $('#product-name').val();
+                const description = $('#product-description').val();
+                const price = $('#product-price').val();
+                const stock = $('#product-stock').val();
+
+                const product = {
+                    id: Date.now(),
+                    name,
+                    description,
+                    price,
+                    stock
+                };
+
+                products.push(product);
+                renderProductList();
+                this.reset();
+            });
+
+            function renderProductList() {
+                const productList = $('#product-list');
+                productList.empty();
+
+                products.forEach(product => {
+                    const productItem = $(`
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>${product.name} - $${product.price} (Stock: ${product.stock})</span>
+                                <div>
+                                    <button class="btn btn-info btn-sm mr-2 edit-btn" data-id="${product.id}">Editar</button>
+                                    <button class="btn btn-danger btn-sm delete-btn" data-id="${product.id}">Eliminar</button>
+                                </div>
+                            </div>
+                            <p>${product.description}</p>
+                        </li>
+                    `);
+
+                    productList.append(productItem);
+                });
+
+                $('.edit-btn').on('click', function () {
+                    const id = $(this).data('id');
+                    const product = products.find(p => p.id === id);
+
+                    $('#product-name').val(product.name);
+                    $('#product-description').val(product.description);
+                    $('#product-price').val(product.price);
+                    $('#product-stock').val(product.stock);
+
+                    products = products.filter(p => p.id !== id);
+                    renderProductList();
+                });
+
+                $('.delete-btn').on('click', function () {
+                    const id = $(this).data('id');
+                    products = products.filter(p => p.id !== id);
+                    renderProductList();
+                });
+            }
+
             $('#search-btn').click(function () {
                 $('.btn-outline-success').toggleClass('btn-outline-success btn-success');
             });
