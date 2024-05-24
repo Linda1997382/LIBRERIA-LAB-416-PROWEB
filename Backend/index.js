@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import pool from './db.js';
 import config from './config.js';
 import cors from 'cors';
+import booksRoutes from './routes/book.js'; // Importa las rutas de books.js
 
 const app = express();
 const port = config.server.port;
@@ -75,6 +76,9 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Error al iniciar sesión' });
   }
 });
+
+// Rutas para el API de libros
+app.use('/api/books', booksRoutes);
 
 app.listen(port, () => {
   console.log(`El servidor está corriendo en el puerto ${port}`);

@@ -2,11 +2,11 @@ import mysql from 'mysql2/promise';
 import config from '../config.js';
 
 const dbsettings = {
-  host: config.dbServer,
-  port: config.dbPort, // Asegúrate de incluir el puerto aquí
-  user: config.dbUser,
-  password: config.dbPassword,
-  database: config.dbDatabase,
+  host: config.db.host,
+  port: config.db.port,
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.database,
 };
 
 async function getConnection() {
@@ -16,8 +16,8 @@ async function getConnection() {
     return connection;
   } catch (error) {
     console.error("Error connecting to the database: ", error);
+    throw error; // Lanzar el error para manejarlo correctamente en las rutas
   }
 }
 
 export { getConnection, mysql };
-

@@ -69,109 +69,239 @@
                     <hr>
                     <!-- Funcionalidad CRUD -->
                     <div>
-                        <h4>Añadir/Actualizar Producto</h4>
-                        <form id="product-form">
-                            <div class="form-group">
-                                <label for="product-name">Nombre del Producto</label>
-                                <input type="text" class="form-control" id="product-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="product-description">Descripción del Producto</label>
-                                <textarea class="form-control" id="product-description" rows="3" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="product-price">Precio</label>
-                                <input type="number" class="form-control" id="product-price" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="product-stock">Cantidad vendida</label>
-                                <input type="number" class="form-control" id="product-stock" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Guardar Producto</button>
-                        </form>
-                        <hr>
-                        <h4>Lista de Productos</h4>
-                        <ul class="list-group" id="product-list">
-                            <!-- Los productos se agregarán aquí dinámicamente -->
-                        </ul>
+                        <h1>Administrar Libros</h1>
+    <form id="bookForm">
+      <div class="form-group">
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" id="titulo" required>
+      </div>
+      <div class="form-group">
+        <label for="autorID">AutorID</label>
+        <input type="number" class="form-control" id="autorID" required>
+      </div>
+      <div class="form-group">
+        <label for="editorialID">EditorialID</label>
+        <input type="number" class="form-control" id="editorialID" required>
+      </div>
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input type="number" class="form-control" id="precio" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="categoriaID">CategoriaID</label>
+        <input type="number" class="form-control" id="categoriaID" required>
+      </div>
+      <div class="form-group">
+        <label for="imagen">Imagen</label>
+        <input type="text" class="form-control" id="imagen">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <div id="message"></div>
                     </div>
+                    <h1>Libros</h1>
+    <div id="books"></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal para editar un libro -->
+    <div id="editBookModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeEditModal()">&times;</span>
+          <h2>Editar Libro</h2>
+      <form id="editBookForm">
+        <div>
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo" required>
+        </div>
+        <div>
+          <label for="autorID">Autor ID:</label>
+          <input type="text" id="autorID" name="autorID" required>
+        </div>
+        <div>
+          <label for="editorialID">Editorial ID:</label>
+          <input type="text" id="editorialID" name="editorialID" required>
+        </div>
+        <div>
+          <label for="precio">Precio:</label>
+          <input type="text" id="precio" name="precio" required>
+        </div>
+        <div>
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" required></textarea>
+        </div>
+        <div>
+          <label for="categoriaID">Categoría ID:</label>
+          <input type="text" id="categoriaID" name="categoriaID" required>
+        </div>
+        <div>
+          <label for="imagen">URL de la Imagen:</label>
+          <input type="text" id="imagen" name="imagen" required>
+        </div>
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function () {
-            let products = [];
+        //agregar/editar libros
+        document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('bookForm');
+      const messageDiv = document.getElementById('message');
 
-            $('#product-form').on('submit', function (e) {
-                e.preventDefault();
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-                const name = $('#product-name').val();
-                const description = $('#product-description').val();
-                const price = $('#product-price').val();
-                const stock = $('#product-stock').val();
+        const titulo = form.titulo.value;
+        const autorID = form.autorID.value;
+        const editorialID = form.editorialID.value;
+        const precio = form.precio.value;
+        const descripcion = form.descripcion.value;
+        const categoriaID = form.categoriaID.value;
+        const imagen = form.imagen.value;
 
-                const product = {
-                    id: Date.now(),
-                    name,
-                    description,
-                    price,
-                    stock
-                };
+        // Enviar los datos al servidor
+        try {
+          const response = await fetch('http://localhost:3000/api/books', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Titulo: titulo, AutorID: autorID, EditorialID: editorialID, Precio: precio, Descripcion: descripcion, CategoriaID: categoriaID, Imagen: imagen }),
+          });
 
-                products.push(product);
-                renderProductList();
-                this.reset();
-            });
+          const result = await response.json();
 
-            function renderProductList() {
-                const productList = $('#product-list');
-                productList.empty();
+          if (response.ok) {
+            showMessage('Libro guardado exitosamente', 'success');
+            form.reset();
+          } else {
+            showMessage(result.message, 'danger');
+          }
+        } catch (error) {
+          showMessage('Error al guardar el libro. Inténtalo de nuevo más tarde.', 'danger');
+        }
+      });
 
-                products.forEach(product => {
-                    const productItem = $(`
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span>${product.name} - $${product.price} (Stock: ${product.stock})</span>
-                                <div>
-                                    <button class="btn btn-info btn-sm mr-2 edit-btn" data-id="${product.id}">Editar</button>
-                                    <button class="btn btn-danger btn-sm delete-btn" data-id="${product.id}">Eliminar</button>
-                                </div>
-                            </div>
-                            <p>${product.description}</p>
-                        </li>
-                    `);
+      function showMessage(message, type) {
+        messageDiv.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
+      }
+    });
 
-                    productList.append(productItem);
-                });
+    //ver lista de libros
+    document.addEventListener('DOMContentLoaded', async function () {
+      const booksDiv = document.getElementById('books');
 
-                $('.edit-btn').on('click', function () {
-                    const id = $(this).data('id');
-                    const product = products.find(p => p.id === id);
+      try {
+        const response = await fetch('http://localhost:3000/api/books');
+        const books = await response.json();
 
-                    $('#product-name').val(product.name);
-                    $('#product-description').val(product.description);
-                    $('#product-price').val(product.price);
-                    $('#product-stock').val(product.stock);
+        if (response.ok) {
+          booksDiv.innerHTML = `
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Título</th>
+                  <th>AutorID</th>
+                  <th>EditorialID</th>
+                  <th>Precio</th>
+                  <th>Descripción</th>
+                  <th>CategoriaID</th>
+                  <th>Imagen</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${books.map(book => `
+                  <tr>
+                    <td>${book.ID}</td>
+                    <td>${book.Titulo}</td>
+                    <td>${book.AutorID}</td>
+                    <td>${book.EditorialID}</td>
+                    <td>${book.Precio}</td>
+                    <td>${book.Descripcion}</td>
+                    <td>${book.CategoriaID}</td>
+                    <td>${book.Imagen}</td>
+                    <td>
+                      <button onclick="deleteBook(${book.ID})" class="btn btn-danger">Eliminar</button>
+                      <button onclick="editBook(${book.ID})" class="btn btn-warning">Editar</button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          `;
+        } else {
+          booksDiv.innerHTML = `<div class="alert alert-danger">Error al obtener los libros</div>`;
+        }
+      } catch (error) {
+        booksDiv.innerHTML = `<div class="alert alert-danger">Error al obtener los libros</div>`;
+      }
+    });
 
-                    products = products.filter(p => p.id !== id);
-                    renderProductList();
-                });
-
-                $('.delete-btn').on('click', function () {
-                    const id = $(this).data('id');
-                    products = products.filter(p => p.id !== id);
-                    renderProductList();
-                });
-            }
-
-            $('#search-btn').click(function () {
-                $('.btn-outline-success').toggleClass('btn-outline-success btn-success');
-            });
+    async function deleteBook(id) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/books/${id}`, {
+          method: 'DELETE'
         });
+        if (response.ok) {
+          alert('Libro eliminado');
+          location.reload();
+        } else {
+          alert('Error al eliminar el libro');
+        }
+      } catch (error) {
+        alert('Error al eliminar el libro');
+      }
+    }
+    async function editBook(id) {
+  try {
+    console.log(id)
+    // Obtener el libro a editar del servidor
+    const response = await fetch(`http://localhost:3000/api/books/${id}`);
+    
+    if (response.ok) {
+      const book = await response.json();
+      
+      // Llenar un formulario de edición con los datos del libro
+      const editForm = document.getElementById('editBookForm');
+      editForm.titulo.value = book.Titulo;
+      editForm.autorID.value = book.AutorID;
+      editForm.editorialID.value = book.EditorialID;
+      editForm.precio.value = book.Precio;
+      editForm.descripcion.value = book.Descripcion;
+      editForm.categoriaID.value = book.CategoriaID;
+      editForm.imagen.value = book.Imagen;
+      
+      
+      // Mostrar el formulario de edición
+      document.getElementById('editBookModal').style.display = 'block';
+    } else {
+      // Manejar errores si la solicitud no es exitosa
+      throw new Error('Error al obtener el libro para editar');
+    }
+  } catch (error) {
+    // Manejar errores de red u otros errores
+    console.error('Error al obtener el libro para editar:', error);
+    alert('Error al obtener el libro para editar');
+  }
+}
+// Función para cerrar el modal de edición de libro
+function closeEditModal() {
+  document.getElementById('editBookModal').style.display = 'none';
+}
+
+
     </script>
 </body>
 

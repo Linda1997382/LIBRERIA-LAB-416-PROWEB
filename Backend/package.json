@@ -10,6 +10,7 @@
     "@babel/core": "^7.24.5",
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.5",
+    "all": "^0.0.0",
     "babel": "^6.23.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
