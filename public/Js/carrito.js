@@ -1,47 +1,66 @@
-$(document).ready(function() {
-    // Array para almacenar los elementos del carrito
-    var cartItems = [];
+document.addEventListener('DOMContentLoaded', async function () {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const usuarioID = 1; // Reemplaza con el ID real del usuario
 
-    // Función para agregar un elemento al carrito
-    function addToCart(item) {
-        cartItems.push(item);
-        updateCart();
+    try {
+        // Obtener los items del carrito desde el servidor
+        const response = await fetch(`http://localhost:3000/api/cart/${usuarioID}`);
+        const cartItems = await response.json();
+
+        if (response.ok) {
+            if (cartItems.length === 0) {
+                cartItemsContainer.innerHTML = '<li class="list-group-item">Tu carrito está vacío</li>';
+                totalPriceElement.textContent = '$0';
+                return;
+            }
+
+            let totalPrice = 0;
+            cartItemsContainer.innerHTML = '';
+
+            for (const item of cartItems) {
+                const bookResponse = await fetch(`http://localhost:3000/api/books/${item.LibroID}`);
+                const book = await bookResponse.json();
+
+                if (bookResponse.ok) {
+                    totalPrice += book.Precio * item.Cantidad;
+                    cartItemsContainer.innerHTML += `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>${book.Titulo}</h5>
+                                <p>${book.Descripcion}</p>
+                                <small class="text-muted">Precio: $${book.Precio}</small>
+                                <small class="text-muted">Cantidad: ${item.Cantidad}</small>
+                            </div>
+                            <button class="btn btn-sm btn-danger" onclick="removeFromCart(${usuarioID}, ${book.ID})">Eliminar</button>
+                        </li>
+                    `;
+                }
+            }
+
+            // Actualizar el precio total
+            totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+        } else {
+            cartItemsContainer.innerHTML = '<li class="list-group-item">Error al obtener los detalles del carrito</li>';
+        }
+    } catch (error) {
+        cartItemsContainer.innerHTML = '<li class="list-group-item">Error al obtener los detalles del carrito</li>';
     }
+});
 
-    // Función para eliminar un elemento del carrito
-    function removeFromCart(index) {
-        cartItems.splice(index, 1);
-        updateCart();
-    }
-
-    // Función para actualizar la interfaz del carrito
-    function updateCart() {
-        var totalPrice = 0;
-        var cartList = $('#cart-items');
-        cartList.empty();
-
-        // Recorrer todos los elementos del carrito
-        cartItems.forEach(function(item, index) {
-            var listItem = $('<li>').addClass('list-group-item');
-            listItem.text(item.name + ' - $' + item.price);
-            var removeBtn = $('<button>').addClass('btn btn-danger btn-sm ms-2');
-            removeBtn.html('<i class="fas fa-trash-alt"></i>');
-            removeBtn.click(function() {
-                removeFromCart(index);
-            });
-            listItem.append(removeBtn);
-            cartList.append(listItem);
-            totalPrice += item.price;
+async function removeFromCart(usuarioID, libroID) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/cart/${usuarioID}/${libroID}`, {
+            method: 'DELETE',
         });
 
-        // Actualizar el precio total
-        $('#total-price').text('$' + totalPrice.toFixed(2));
+        if (response.ok) {
+            alert('Libro eliminado del carrito');
+            location.reload();
+        } else {
+            alert('Error al eliminar el libro del carrito');
+        }
+    } catch (error) {
+        alert('Error al eliminar el libro del carrito');
     }
-
-    // Evento de clic para agregar elementos al carrito
-    $('.add-to-cart').click(function() {
-        var itemName = $(this).data('name');
-        var itemPrice = parseFloat($(this).data('price'));
-        addToCart({ name: itemName, price: itemPrice });
-    });
-});
+}

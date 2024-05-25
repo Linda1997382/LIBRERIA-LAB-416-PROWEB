@@ -5,6 +5,7 @@ import pool from './db.js';
 import config from './config.js';
 import cors from 'cors';
 import booksRoutes from './routes/book.js'; // Importa las rutas de books.js
+import cartRoutes from './routes/cart.js';
 
 const app = express();
 const port = config.server.port;
@@ -79,6 +80,9 @@ app.post('/api/login', async (req, res) => {
 
 // Rutas para el API de libros
 app.use('/api/books', booksRoutes);
+
+//ruta cart
+app.use('/api/cart', cartRoutes);
 
 app.listen(port, () => {
   console.log(`El servidor está corriendo en el puerto ${port}`);
