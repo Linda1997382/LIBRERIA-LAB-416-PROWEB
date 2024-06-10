@@ -23,9 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("result.user antes de guardar en sessionStorage:", result.user);
         sessionStorage.setItem('user', JSON.stringify(result.user));
         console.log("Datos guardados en sessionStorage:", sessionStorage.getItem('user'));
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 100);
+        
+        // Redireccionar según el privilegio del usuario
+        if (result.user.privilegio === 'Administrador') {
+          window.location.href = 'miperfiladmin.html'; // Página para administradores
+        } else {
+          window.location.href = 'index.html'; // Página para usuarios regulares
+        }
       } else {
         showError(result.message);
       }

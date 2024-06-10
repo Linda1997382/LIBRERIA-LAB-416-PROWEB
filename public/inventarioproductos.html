@@ -67,88 +67,102 @@
                     <p><strong>Hola [Administrador]</strong></p>
                     <p>Desde aquí tienes la posibilidad de ver los productos añadidos y actualizar su disponibilidad. Además de que también puedes implementar nuevos productos.</p>
                     <hr>
-                    <!-- Funcionalidad CRUD -->
                     <div>
-                        <h1>Administrar Libros</h1>
-    <form id="bookForm">
-      <div class="form-group">
-        <label for="titulo">Título</label>
-        <input type="text" class="form-control" id="titulo" required>
-      </div>
-      <div class="form-group">
-        <label for="autorID">AutorID</label>
-        <input type="number" class="form-control" id="autorID" required>
-      </div>
-      <div class="form-group">
-        <label for="editorialID">EditorialID</label>
-        <input type="number" class="form-control" id="editorialID" required>
-      </div>
-      <div class="form-group">
-        <label for="precio">Precio</label>
-        <input type="number" class="form-control" id="precio" step="0.01" required>
-      </div>
-      <div class="form-group">
-        <label for="descripcion">Descripción</label>
-        <textarea class="form-control" id="descripcion" rows="3" required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="categoriaID">CategoriaID</label>
-        <input type="number" class="form-control" id="categoriaID" required>
-      </div>
-      <div class="form-group">
-        <label for="imagen">Imagen</label>
-        <input type="text" class="form-control" id="imagen">
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
-    <div id="message"></div>
-                    </div>
-                    <h1>Libros</h1>
-    <div id="books"></div>
-                </div>
+                      <h1>Administrar Libros</h1>
+                      <form id="bookForm">
+                          <div class="form-group">
+                              <label for="titulo">Título</label>
+                              <input type="text" class="form-control" id="titulo" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="autorID">AutorID</label>
+                              <input type="number" class="form-control" id="autorID" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="editorialID">EditorialID</label>
+                              <input type="number" class="form-control" id="editorialID" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="precio">Precio</label>
+                              <input type="number" class="form-control" id="precio" step="0.01" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="descripcion">Descripción</label>
+                              <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="categoriaID">CategoriaID</label>
+                              <input type="number" class="form-control" id="categoriaID" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="imagen">Imagen</label>
+                              <input type="text" class="form-control" id="imagen">
+                          </div>
+                          <div class="form-group">
+                              <label for="link">Link del Libro</label>
+                              <input type="text" class="form-control" id="link">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                      </form>
+                      <div id="message"></div>
+                  </div>
+                  <h1>Libros</h1>
+                  <div id="books"></div>
+                  <!-- Modal de Edición de Libro -->
+<div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="editBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBookModalLabel">Editar Libro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editBookForm">
+            <div class="mb-3">
+              <label for="editTitulo" class="form-label">Título</label>
+              <input type="text" class="form-control" id="editTitulo" required>
             </div>
+            <div class="mb-3">
+              <label for="editAutorID" class="form-label">Autor ID</label>
+              <input type="number" class="form-control" id="editAutorID" required>
+            </div>
+            <div class="mb-3">
+              <label for="editEditorialID" class="form-label">Editorial ID</label>
+              <input type="number" class="form-control" id="editEditorialID" required>
+            </div>
+            <div class="mb-3">
+              <label for="editPrecio" class="form-label">Precio</label>
+              <input type="text" class="form-control" id="editPrecio" required>
+            </div>
+            <div class="mb-3">
+              <label for="editDescripcion" class="form-label">Descripción</label>
+              <textarea class="form-control" id="editDescripcion" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="editCategoriaID" class="form-label">Categoría ID</label>
+              <input type="number" class="form-control" id="editCategoriaID" required>
+            </div>
+            <div class="mb-3">
+              <label for="editImagen" class="form-label">Imagen URL</label>
+              <input type="text" class="form-control" id="editImagen" required>
+            </div>
+            <div class="mb-3">
+              <label for="editLink" class="form-label">Enlace</label>
+              <input type="text" class="form-control" id="editLink" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
         </div>
-    </div>
-
-    <!-- Modal para editar un libro -->
-    <div id="editBookModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeEditModal()">&times;</span>
-          <h2>Editar Libro</h2>
-      <form id="editBookForm">
-        <div>
-          <label for="titulo">Título:</label>
-          <input type="text" id="titulo" name="titulo" required>
-        </div>
-        <div>
-          <label for="autorID">Autor ID:</label>
-          <input type="text" id="autorID" name="autorID" required>
-        </div>
-        <div>
-          <label for="editorialID">Editorial ID:</label>
-          <input type="text" id="editorialID" name="editorialID" required>
-        </div>
-        <div>
-          <label for="precio">Precio:</label>
-          <input type="text" id="precio" name="precio" required>
-        </div>
-        <div>
-          <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion" required></textarea>
-        </div>
-        <div>
-          <label for="categoriaID">Categoría ID:</label>
-          <input type="text" id="categoriaID" name="categoriaID" required>
-        </div>
-        <div>
-          <label for="imagen">URL de la Imagen:</label>
-          <input type="text" id="imagen" name="imagen" required>
-        </div>
-        <button type="submit">Guardar Cambios</button>
-      </form>
+      </div>
     </div>
   </div>
   
+
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
