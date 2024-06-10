@@ -36,8 +36,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i
-                                class="fas fa-sign-out-alt sign-out-icon"></i></a>
+                        <button id="logoutButton" class="btn btn-secondary">Cerrar Sesión</button>
                     </li>
                 </ul>
             </div>
@@ -63,25 +62,35 @@
 
             <div class="col-md-8">
                 <div>
-                    <h3 class="profile-section-title">Reportes</h3>
-                    <p><strong>Hola [Administrador]</strong></p>
-                    <p>Desde aquí tienes la posibilidad de ver los reportes de ventas y llevar un conteo organizado de todos los productos vendidos de acuerdo a filtros como fecha, producto, editorial, autor, entre otros.
-                    </p>
+                    <h3 class="profile-section-title">Reportes de Ventas</h3>
+                    <p><strong>Bienvenido [Administrador]</strong></p>
+                    <p>Desde aquí tienes la posibilidad de ver los reportes de ventas y llevar un conteo organizado de todos los productos vendidos de acuerdo a filtros como fecha, producto, editorial, autor, entre otros.</p>
                     <hr>
+            
+                    <!-- Tabla para mostrar los reportes de ventas -->
+                    <table class="table mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID de Venta</th>
+                                <th scope="col">ID de Libro</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportes-list">
+                            <!-- Aquí se mostrarán los reportes de ventas -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </div>
+            
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#search-btn').click(function () {
-                $('.btn-outline-success').toggleClass('btn-outline-success btn-success');
-            });
-        });
+    <script src="Js/reportes.js">
     </script>
+    
 </body>
 
 </html>

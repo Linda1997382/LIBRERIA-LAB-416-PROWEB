@@ -17,7 +17,28 @@ $(document).ready(function(){
     // Manejar el envío del formulario
     $('#compraForm').submit(function(e) {
         e.preventDefault(); // Evitar el envío del formulario para este ejemplo
-        // Aquí puedes enviar los datos del formulario a tu servidor o procesarlos según tus necesidades
-        console.log('Formulario enviado');
+
+        // Obtener los datos del formulario
+        var ventaData = {
+            VentaID: 1, // Reemplaza con el ID de la venta si es necesario
+            LibroID: 1, // Reemplaza con el ID del libro comprado
+            Cantidad: 1, // Reemplaza con la cantidad de libros comprados
+            Precio: 10.00 // Reemplaza con el precio del libro
+        };
+
+        // Enviar los datos al backend
+        $.ajax({
+            url: 'http://localhost:3000/api/compra',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(ventaData),
+            success: function(response) {
+                alert(response.message); // Mostrar mensaje de éxito
+                location.reload(); // Recargar la página después de registrar la venta
+            },
+            error: function(error) {
+                alert('Error al realizar la compra'); // Mostrar mensaje de error
+            }
+        });
     });
 });

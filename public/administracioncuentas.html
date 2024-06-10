@@ -36,8 +36,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link sign-out-list-item" href="#">Cerrar Sesión <i
-                                class="fas fa-sign-out-alt sign-out-icon"></i></a>
+                        <button id="logoutButton" class="btn btn-secondary">Cerrar Sesión</button>
                     </li>
                 </ul>
             </div>
@@ -65,97 +64,33 @@
                 <div>
                     <h3 class="profile-section-title">Administración de cuentas</h3>
                     <p><strong>Hola [Administrador]</strong></p>
-                    <p>Desde aquí tienes la posibilidad de ver los usuarios añadidos y actualizar su estatus. Ademas de que tambien puedes modificar roles, entre otras funciones.</p>
+                    <p>Desde aquí tienes la posibilidad de ver los usuarios añadidos y actualizar su estatus. Además, también puedes modificar roles, entre otras funciones.</p>
                     <hr>
-
-                    <!-- CRUD de usuarios -->
-                    <div class="text-box">
-                        <h4>Gestión de Usuarios</h4>
-                        <form id="user-form">
-                            <div class="form-group">
-                                <label for="username">Nombre de Usuario</label>
-                                <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" placeholder="Correo Electrónico">
-                            </div>
-                            <div class="form-group">
-                                <label for="role">Rol</label>
-                                <select class="form-control" id="role">
-                                    <option>Administrador</option>
-                                    <option>Usuario</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Agregar Usuario</button>
-                        </form>
-                        <hr>
-                        <h4>Lista de Usuarios</h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nombre de Usuario</th>
-                                    <th>Correo Electrónico</th>
-                                    <th>Rol</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="user-list">
-                                <!-- Aquí se agregarán los usuarios dinámicamente -->
-                            </tbody>
-                        </table>
-                    </div>
+                    
+                    <!-- Tabla para mostrar los usuarios -->
+                    <table class="table mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Privilegio</th>
+                                <th scope="col">Nuevo Privilegio</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-list">
+                            <!-- Aquí se mostrarán los usuarios -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
+            
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#search-btn').click(function () {
-                $('.btn-outline-success').toggleClass('btn-outline-success btn-success');
-            });
-
-            const userList = $('#user-list');
-
-            $('#user-form').on('submit', function (event) {
-                event.preventDefault();
-                const username = $('#username').val();
-                const email = $('#email').val();
-                const role = $('#role').val();
-
-                if (username && email) {
-                    const userRow = `
-                        <tr>
-                            <td>${username}</td>
-                            <td>${email}</td>
-                            <td>${role}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm edit-user">Editar</button>
-                                <button class="btn btn-danger btn-sm delete-user">Eliminar</button>
-                            </td>
-                        </tr>
-                    `;
-                    userList.append(userRow);
-
-                    $('.edit-user').off().on('click', function () {
-                        const row = $(this).closest('tr');
-                        $('#username').val(row.find('td:eq(0)').text());
-                        $('#email').val(row.find('td:eq(1)').text());
-                        $('#role').val(row.find('td:eq(2)').text());
-                        row.remove();
-                    });
-
-                    $('.delete-user').off().on('click', function () {
-                        $(this).closest('tr').remove();
-                    });
-
-                    $('#user-form')[0].reset();
-                }
-            });
-        });
+    <script src="Js/administrarcuentas.js">
     </script>
 </body>
 

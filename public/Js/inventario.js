@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                               <td><a href="${book.Link}" target="_blank">${book.Link}</a></td>
                               <td>
                                   <button onclick="deleteBook(${book.ID})" class="btn btn-danger">Eliminar</button>
-                                  <button data-book-id="${book.ID}" class="btn btn-warning btn-edit">Editar</button>
                               </td>
                           </tr>
                       `).join('')}
