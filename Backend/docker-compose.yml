@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-  mysql:
-    build: .
-    container_name: mysql_container
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
     ports:
-      - "${DB_PORT}:3306"
+      - "27017:27017"
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USER}  
-      MYSQL_DATABASE: ${DB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-admin}
+      MONGO_INITDB_DATABASE: ${DB_DATABASE:-ecommerce}
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mongodb_data:/data/db
 
 volumes:
-  mysql_data:
+  mongodb_data:
     driver: local

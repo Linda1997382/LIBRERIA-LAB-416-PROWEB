@@ -1,13 +1,13 @@
 import express from 'express';
-import pool from '../db.js';
+import Category from '../models/Category.js';
 
 const router = express.Router();
 
 // Obtener todas las categorías
 router.get('/', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM categoria');
-    res.status(200).json(rows);
+    const categories = await Category.find();
+    res.status(200).json(categories);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error al obtener las categorías' });
@@ -19,8 +19,9 @@ router.post('/', async (req, res) => {
   const { nombre } = req.body;
 
   try {
-    const [result] = await pool.query('INSERT INTO categoria (Nombre) VALUES (?)', [nombre]);
-    res.status(201).json({ message: 'Categoría agregada exitosamente', id: result.insertId });
+    const newCategory = new Category({ Nombre: nombre });
+    const savedCategory = await newCategory.save();
+    res.status(201).json({ message: 'Categoría agregada exitosamente', id: savedCategory._id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error al agregar la categoría' });
@@ -32,9 +33,9 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const [result] = await pool.query('DELETE FROM categoria WHERE ID = ?', [id]);
+    const deletedCategory = await Category.findByIdAndDelete(id);
 
-    if (result.affectedRows === 0) {
+    if (!deletedCategory) {
       return res.status(404).json({ message: 'Categoría no encontrada' });
     }
 

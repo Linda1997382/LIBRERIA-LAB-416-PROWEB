@@ -1,5 +1,5 @@
 import express from 'express';
-import pool from '../db.js';
+import Cart from '../models/Cart.js';
 
 const router = express.Router();
 
@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/:usuarioID', async (req, res) => {
   const { usuarioID } = req.params;
   try {
-    const [rows] = await pool.query('SELECT * FROM carrito WHERE UsuarioID = ?', [usuarioID]);
-    res.json(rows);
+    const items = await Cart.find({ UsuarioID: usuarioID }).populate('LibroID');
+    res.json(items);
   } catch (error) {
     console.error('Error al obtener items del carrito:', error);
     res.status(500).json({ message: 'Error al obtener items del carrito' });
@@ -19,14 +19,14 @@ router.get('/:usuarioID', async (req, res) => {
 router.post('/', async (req, res) => {
   const { usuarioID, libroID, cantidad } = req.body;
   try {
-    // Verificar si el libro ya está en el carrito
-    const [existingRows] = await pool.query('SELECT * FROM carrito WHERE UsuarioID = ? AND LibroID = ?', [usuarioID, libroID]);
-    if (existingRows.length > 0) {
-      // Actualizar la cantidad si el libro ya está en el carrito
-      await pool.query('UPDATE carrito SET Cantidad = Cantidad + ? WHERE UsuarioID = ? AND LibroID = ?', [cantidad, usuarioID, libroID]);
+    let cartItem = await Cart.findOne({ UsuarioID: usuarioID, LibroID: libroID });
+    
+    if (cartItem) {
+      cartItem.Cantidad += cantidad;
+      await cartItem.save();
     } else {
-      // Agregar el libro al carrito si no está presente
-      await pool.query('INSERT INTO carrito (UsuarioID, LibroID, Cantidad) VALUES (?, ?, ?)', [usuarioID, libroID, cantidad]);
+      cartItem = new Cart({ UsuarioID: usuarioID, LibroID: libroID, Cantidad: cantidad });
+      await cartItem.save();
     }
     res.status(201).json({ message: 'Libro agregado al carrito' });
   } catch (error) {
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 router.delete('/:usuarioID/:libroID', async (req, res) => {
   const { usuarioID, libroID } = req.params;
   try {
-    await pool.query('DELETE FROM carrito WHERE UsuarioID = ? AND LibroID = ?', [usuarioID, libroID]);
+    await Cart.findOneAndDelete({ UsuarioID: usuarioID, LibroID: libroID });
     res.json({ message: 'Libro eliminado del carrito' });
   } catch (error) {
     console.error('Error al eliminar libro del carrito:', error);
@@ -47,5 +47,4 @@ router.delete('/:usuarioID/:libroID', async (req, res) => {
   }
 });
 
-// Exportar el router
 export default router;

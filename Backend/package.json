@@ -21,9 +21,8 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^3.9.7"
+    "mongoose": "^9.10.2",
+    "morgan": "^1.10.0"
   },
   "type": "module"
 }

@@ -1,13 +1,13 @@
 import express from 'express';
-import pool from '../db.js';
+import Editorial from '../models/Editorial.js';
 
 const router = express.Router();
 
 // Obtener todas las editoriales
 router.get('/', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT ID, Nombre, Sede, Fundacion, Descripcion FROM Editorial');
-    res.status(200).json(rows);
+    const editoriales = await Editorial.find({}, '_id Nombre Sede Fundacion Descripcion');
+    res.status(200).json(editoriales);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error al obtener las editoriales' });
@@ -19,7 +19,8 @@ router.post('/', async (req, res) => {
   const { Nombre, Sede, Fundacion, Descripcion } = req.body;
 
   try {
-    await pool.query('INSERT INTO Editorial (Nombre, Sede, Fundacion, Descripcion) VALUES (?, ?, ?, ?)', [Nombre, Sede, Fundacion, Descripcion]);
+    const newEditorial = new Editorial({ Nombre, Sede, Fundacion, Descripcion });
+    await newEditorial.save();
     res.status(201).json({ message: 'Editorial agregada exitosamente' });
   } catch (error) {
     console.error(error);
@@ -32,9 +33,9 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const [result] = await pool.query('DELETE FROM Editorial WHERE ID = ?', [id]);
+    const deletedEditorial = await Editorial.findByIdAndDelete(id);
 
-    if (result.affectedRows === 0) {
+    if (!deletedEditorial) {
       return res.status(404).json({ message: 'Editorial no encontrada' });
     }
 
