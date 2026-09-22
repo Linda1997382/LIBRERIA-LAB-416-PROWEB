@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                                 <small class="text-muted">Precio: $${book.Precio}</small>
                                 <small class="text-muted">Cantidad: ${item.Cantidad}</small>
                             </div>
-                            <button class="btn btn-sm btn-danger" onclick="removeFromCart(${usuarioID}, ${book.ID})">Eliminar</button>
+                            <button class="btn btn-sm btn-danger" onclick="removeFromCart(${usuarioID}, '${book._id}')">Eliminar</button>
                         </li>
                     `;
                 }

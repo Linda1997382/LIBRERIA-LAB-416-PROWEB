@@ -28,7 +28,7 @@ $(document).ready(function(){
 
         // Enviar los datos al backend
         $.ajax({
-            url: 'http://localhost:3000/api/compra',
+            url: 'http://localhost:3000/api/ventas',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(ventaData),
